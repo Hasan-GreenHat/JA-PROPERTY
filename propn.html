@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JA Property Dealer - Hyderabad Properties</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a5276;
+            --secondary: #e67e22;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #7f8c8d;
+            --success: #27ae60;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Fixed Compact Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.6rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 65px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 0 0 auto;
+        }
+
+        .logo i {
+            font-size: 1.4rem;
+            color: var(--secondary);
+        }
+
+        .logo h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: rgb(15, 15, 15);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            padding: 0.3rem 0.5rem;
+            white-space: nowrap;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .header-cta {
+            flex: 0 0 auto;
+        }
+
+        .cta-button {
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #d35400;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 82, 118, 0.8), rgba(26, 82, 118, 0.9)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1073&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .search-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-tabs {
+            display: flex;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-tab {
+            padding: 0.5rem 1.2rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .search-tab.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .search-box {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        .search-box input, .search-box select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .search-box button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .search-box button:hover {
+            background: #d35400;
+        }
+
+        /* Featured Properties */
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .property-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .property-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .property-card:hover .property-img img {
+            transform: scale(1.05);
+        }
+
+        .property-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .property-tag.rent {
+            background: var(--success);
+        }
+
+        .property-info {
+            padding: 1.5rem;
+        }
+
+        .property-price {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .property-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .property-location {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .property-features {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature i {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .no-properties {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-properties i {
+            font-size: 3rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        /* Areas Section */
+        .areas-section {
+            background-color: var(--light);
+            padding: 3rem 0;
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .area-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .area-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .area-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .area-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+
+
+                /* Services Section */
+        .services-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border: 1px solid #e9ecef;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .about-text h4 {
+            color: var(--primary);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-item i {
+            color: var(--success);
+        }
+
+        .stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat h4 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            color: var(--secondary);
+            margin-right: 1rem;
+            margin-top: 5px;
+            font-size: 1.2rem;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .map {
+            margin-top: 2rem;
+        }
+
+        .map h4 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .map-placeholder {
+            background: var(--light);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            border: 2px dashed #ddd;
+        }
+
+        .map-placeholder i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            flex: 1;
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Responsive Design for New Sections */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 0.8rem;
+                height: auto;
+                padding: 0.8rem 0;
+            }
+            
+            nav {
+                order: 2;
+                width: 100%;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.8rem;
+            }
+            
+            .header-cta {
+                order: 3;
+            }
+            
+            .logo {
+                order: 1;
+            }
+
+            .search-box {
+                grid-template-columns: 1fr;
+            }
+
+            .search-tabs {
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-building"></i>
+                <h1>J.A <span>Property Dealer</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#properties">Properties</a></li>
+                    <li><a href="#areas">Areas</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="#contact" class="cta-button">Get In Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Find Your Dream Property in Hyderabad</h2>
+            <p>J.A Property Dealer offers the best residential and commercial properties across Hyderabad with transparent deals and expert guidance.</p>
+            <div class="search-container">
+                <div class="search-tabs">
+                    <div class="search-tab active" data-tab="sale">Buy Property</div>
+                    <div class="search-tab" data-tab="rent">Rent Property</div>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="location-search" placeholder="Enter location (e.g., Bandlaguda, Gachibowli)">
+                    <select id="property-type">
+                        <option value="">Any Type</option>
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="plot">Plot</option>
+                    </select>
+                    <select id="price-range">
+                        <option value="">Any Budget</option>
+                        <option value="0-5000000">Under 50 Lakhs</option>
+                        <option value="5000000-10000000">50 Lakhs - 1 Crore</option>
+                        <option value="10000000-20000000">1 - 2 Crores</option>
+                        <option value="20000000+">Above 2 Crores</option>
+                    </select>
+                    <button id="search-btn"><i class="fas fa-search"></i> Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section class="container" id="properties">
+        <div class="section-title">
+            <h2>Featured Properties</h2>
+            <p>Explore our handpicked selection of premium properties</p>
+        </div>
+        <div class="properties-grid" id="properties-container">
+            <!-- Properties will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <!-- Areas Section -->
+    <section class="areas-section" id="areas">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Areas in Hyderabad</h2>
+                <p>Find properties in Hyderabad's most sought-after locations</p>
+            </div>
+            <div class="areas-grid">
+                <div class="area-card">
+                    <i class="fas fa-city"></i>
+                    <h3>Gachibowli</h3>
+                    <p>IT Hub with premium apartments</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Banjara Hills</h3>
+                    <p>Luxury villas and apartments</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>HITEC City</h3>
+                    <p>Commercial and residential spaces</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-university"></i>
+                    <h3>Jubilee Hills</h3>
+                    <p>Premium residential area</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-tree"></i>
+                    <h3>Kondapur</h3>
+                    <p>Growing residential locality</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Bandlaguda</h3>
+                    <p>Affordable residential area</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive property solutions for all your needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Residential Properties</h3>
+                    <p>Find your perfect home from our wide range of apartments, villas, and independent houses.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Commercial Properties</h3>
+                    <p>Office spaces, retail shops, and commercial complexes for your business needs.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Property Management</h3>
+                    <p>End-to-end property management services for landlords and property owners.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Legal Assistance</h3>
+                    <p>Expert legal guidance for property registration, documentation, and verification.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-key"></i>
+                    <h3>Rental Services</h3>
+                    <p>Find flats and houses for rent with complete documentation and verification.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Investment Consulting</h3>
+                    <p>Get expert advice on property investment opportunities and market trends.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About J.A Property Dealer</h2>
+                <p>Your trusted partner in Hyderabad real estate</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>15+ Years of Excellence in Property Dealing</h3>
+                    <p>J.A Property Dealer has been serving the Hyderabad real estate market for over 15 years, establishing ourselves as one of the most trusted names in property dealing. Our commitment to transparency, integrity, and customer satisfaction has helped thousands of clients find their dream properties.</p>
+                    
+                    <h4>Why Choose Us?</h4>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Verified Properties</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Transparent Deals</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Legal Documentation</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Best Price Guarantee</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Post-Sale Support</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <h4>5000+</h4>
+                            <p>Properties Sold</p>
+                        </div>
+                        <div class="stat">
+                            <h4>15+</h4>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h4>98%</h4>
+                            <p>Client Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="About J.A Property Dealer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with our property experts</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Our Office</h4>
+                                <p>Bandlaguda, Hyderabad, Telangana 500005</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <h4>Phone Number</h4>
+                                <p>+91 8019671808</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email Address</h4>
+                                <p>ahmedjunaid786114@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Working Hours</h4>
+                                <p>Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                                <p>Sunday: 10:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map">
+                        <h4>Find Us Here</h4>
+                        <div class="map-placeholder">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <p>Google Maps Location</p>
+                            <small>Nice hotel , Noori nagar , Bandlaguda, Hyderabad <br> <a href="https://maps.app.goo.gl/9YnVT1pqkGdnPU9y6">Click For Location</a></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email *</label>
+                            <input type="email" id="email" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="interest">I'm Interested In</label>
+                            <select id="interest">
+                                <option value="">Select an option</option>
+                                <option value="buy">Buying a Property</option>
+                                <option value="sell">Selling a Property</option>
+                                <option value="rent">Renting a Property</option>
+                                <option value="consult">Investment Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget Range</label>
+                            <select id="budget">
+                                <option value="">Select budget</option>
+                                <option value="0-50">Under 50 Lakhs</option>
+                                <option value="50-100">50 Lakhs - 1 Crore</option>
+                                <option value="100-200">1 - 2 Crores</option>
+                                <option value="200+">Above 2 Crores</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" placeholder="Tell us about your requirements" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>J.A Property Dealer</h3>
+                    <p>Your trusted partner for property deals in Hyderabad. We provide comprehensive real estate solutions with transparency and expertise.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#areas">Areas</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Property Types</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Apartments</a></li>
+                        <li><a href="#">Villas</a></li>
+                        <li><a href="#">Plots</a></li>
+                        <li><a href="#">Commercial Spaces</a></li>
+                        <li><a href="#">Flats for Rent</a></li>
+                        <li><a href="#">Houses for Rent</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Bandlaguda, Hyderabad</li>
+                        <li><i class="fas fa-phone-alt"></i> +91 8019671808</li>
+                        <li><i class="fas fa-envelope"></i> ahmedjunaid786114@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 J.A Property Dealer. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Property data
+        const properties = [
+            {
+                id: 1,
+                title: "Luxury 3 BHK Apartment",
+                type: "residential",
+                category: "sale",
+                price: 8500000,
+                location: "Gachibowli",
+                address: "Skyline Apartments, Gachibowli",
+                beds: 3,
+                baths: 2,
+                area: 1850,
+                image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 2,
+                title: "Modern 4 BHK Villa",
+                type: "residential",
+                category: "sale",
+                price: 12000000,
+                location: "Banjara Hills",
+                address: "Elite Villas, Banjara Hills",
+                beds: 4,
+                baths: 3,
+                area: 2800,
+                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 3,
+                title: "Premium Commercial Space",
+                type: "commercial",
+                category: "sale",
+                price: 25000000,
+                location: "HITEC City",
+                address: "Tech Park, HITEC City",
+                beds: 0,
+                baths: 2,
+                area: 3200,
+                image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1073&q=80"
+            },
+            {
+                id: 4,
+                title: "2 BHK Flat for Rent",
+                type: "residential",
+                category: "rent",
+                price: 25000,
+                location: "Kondapur",
+                address: "Green Valley Apartments, Kondapur",
+                beds: 2,
+                baths: 2,
+                area: 1200,
+                image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 5,
+                title: "3 BHK Independent House",
+                type: "residential",
+                category: "sale",
+                price: 7500000,
+                location: "Bandlaguda",
+                address: "Green Valley Colony, Bandlaguda",
+                beds: 3,
+                baths: 2,
+                area: 1800,
+                image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+            },
+            {
+                id: 6,
+                title: "1 BHK Flat for Rent",
+                type: "residential",
+                category: "rent",
+                price: 15000,
+                location: "Bandlaguda",
+                address: "Peace Apartments, Bandlaguda",
+                beds: 1,
+                baths: 1,
+                area: 650,
+                image: "https://images.unsplash.com/photo-1556020685-ae41abfc9365?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80"
+            },
+            {
+                id: 7,
+                title: "Commercial Shop for Sale",
+                type: "commercial",
+                category: "sale",
+                price: 5500000,
+                location: "Bandlaguda",
+                address: "Main Road, Bandlaguda",
+                beds: 0,
+                baths: 1,
+                area: 500,
+                image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1153&q=80"
+            },
+            {
+                id: 8,
+                title: "4 BHK Villa for Rent",
+                type: "residential",
+                category: "rent",
+                price: 45000,
+                location: "Jubilee Hills",
+                address: "Luxury Villas, Jubilee Hills",
+                beds: 4,
+                baths: 3,
+                area: 2600,
+                image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=1171&q=80"
+            },
+          {
+        id: 9,
+        title: "2 BHK Independent House for Rent",
+        type: "residential",
+        category: "rent",
+        price: 8500,
+        location: "Bandlaguda",
+        address: "Noori nagar phase c, Bandlaguda",
+        beds: 2,
+        baths: 2,
+        area: 2000,
+        image: "WhatsApp Image 2025-09-16 at 2.32.11 PM.jpeg" // or use a valid URL
+    },
+            {
+        id: 10,
+        title: "2 BHK Independent House for Sale",
+        type: "commercial",
+        category: "sale",
+        price: 4000000,
+        location: "Bandlaguda",
+        address: "Noori nagar phase c, Bandlaguda",
+        beds: 2,
+        baths: 2,
+        area: 2000,
+        image: "WhatsApp Image 2025-09-16 at 2.32.11 PM.jpeg" // or use a valid URL
+    }
+    
+        ];
+
+        // DOM Elements
+        const propertiesContainer = document.getElementById('properties-container');
+        const searchBtn = document.getElementById('search-btn');
+        const locationSearch = document.getElementById('location-search');
+        const propertyType = document.getElementById('property-type');
+        const priceRange = document.getElementById('price-range');
+        const searchTabs = document.querySelectorAll('.search-tab');
+
+        // Current search category
+        let currentCategory = 'sale';
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProperties(properties.filter(p => p.category === currentCategory));
+            
+            // Set up search tabs
+            searchTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    searchTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategory = this.getAttribute('data-tab');
+                    performSearch();
+                });
+            });
+            
+            // Set up search button
+            searchBtn.addEventListener('click', performSearch);
+            
+            // Set up enter key for search
+            locationSearch.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+
+        // Display properties in the grid
+        function displayProperties(propertiesToShow) {
+            propertiesContainer.innerHTML = '';
+            
+            if (propertiesToShow.length === 0) {
+                propertiesContainer.innerHTML = `
+                    <div class="no-properties">
+                        <i class="fas fa-home"></i>
+                        <h3>No Properties Available</h3>
+                        <p>We couldn't find any properties matching your criteria. Try adjusting your search filters.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            propertiesToShow.forEach(property => {
+                const priceFormatted = property.category === 'rent' 
+                    ? `₹${property.price.toLocaleString()}/month` 
+                    : `₹${property.price.toLocaleString()}`;
+                
+                const propertyCard = document.createElement('div');
+                propertyCard.className = 'property-card';
+                propertyCard.innerHTML = `
+                    <div class="property-img">
+                        <img src="${property.image}" alt="${property.title}">
+                        <div class="property-tag ${property.category}">${property.category === 'rent' ? 'For Rent' : 'For Sale'}</div>
+                    </div>
+                    <div class="property-info">
+                        <div class="property-price">${priceFormatted}</div>
+                        <h3 class="property-title">${property.title}</h3>
+                        <div class="property-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${property.address}</span>
+                        </div>
+                        <div class="property-features">
+                            <div class="feature">
+                                <i class="fas fa-bed"></i>
+                                <span>${property.beds} ${property.beds === 1 ? 'Bed' : 'Beds'}</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-bath"></i>
+                                <span>${property.baths} ${property.baths === 1 ? 'Bath' : 'Baths'}</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-vector-square"></i>
+                                <span>${property.area} sq.ft</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                propertiesContainer.appendChild(propertyCard);
+            });
+        }
+
+        // Perform search based on filters
+        function performSearch() {
+            const location = locationSearch.value.toLowerCase().trim();
+            const type = propertyType.value;
+            const price = priceRange.value;
+            
+            let filteredProperties = properties.filter(property => {
+                // Filter by category
+                if (property.category !== currentCategory) return false;
+                
+                // Filter by location (if provided)
+                if (location && !property.location.toLowerCase().includes(location) && 
+                    !property.address.toLowerCase().includes(location)) {
+                    return false;
+                }
+                
+                // Filter by property type (if provided)
+                if (type && property.type !== type) return false;
+                
+                // Filter by price range (if provided)
+                if (price) {
+                    if (price === '20000000+') {
+                        if (property.price < 20000000) return false;
+                    } else {
+                        const [min, max] = price.split('-').map(p => parseInt(p));
+                        if (property.price < min || property.price > max) return false;
+                    }
+                }
+                
+                return true;
+            });
+            
+            displayProperties(filteredProperties);
+        }
+    </script>
+</body>
+</html>
